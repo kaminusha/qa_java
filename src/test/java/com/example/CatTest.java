@@ -1,5 +1,5 @@
-import com.example.Cat;
-import com.example.Feline;
+package com.example;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
