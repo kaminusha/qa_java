@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
 
+// Параметризованный тест для проверки наличия гривы у льва в зависимости от пола
 @RunWith(Parameterized.class)
 public class LionParamMaleFemaleTest {
     private Feline feline;
@@ -22,8 +23,12 @@ public class LionParamMaleFemaleTest {
     public void init () {
         feline = Mockito.mock(Feline.class);
     }
-
-    @Parameterized.Parameters(name = "Sex {0}: {1}")
+    /**
+     * Передаем тестовые данные:
+     * - "Самец" - true (есть грива)
+     * - "Самка" - false (нет гривы)
+     */
+    @Parameterized.Parameters(name = "Пол {0}, Есть грива: {1}")
     public static Object[][] getSex() {
         return new Object[][] {
                 {"Самец", true},
@@ -31,6 +36,7 @@ public class LionParamMaleFemaleTest {
         };
     }
 
+    //Проверяем, что doesHaveMane возвращает ожидаемое значение в зависимости от пола льва
     @Test
     public void testLionHasMane() throws Exception {
     Lion lion = new Lion(gender, feline);

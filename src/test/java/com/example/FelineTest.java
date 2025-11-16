@@ -1,45 +1,42 @@
 package com.example;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.List;
+import static org.junit.Assert.*;
 
+// Тестируем класс Feline
 public class FelineTest {
-    Feline feline;
+   private Feline feline;
 
     @Before
     public void setUp() {
         feline = new Feline();
     }
 
+    // Проверяем, что семейство животного — "Кошачьи"
     @Test
     public void testGetReturnCat() {
-        String actualFelineName = feline.getFamily();
-        String expectedFelineName = "Кошачьи";
-        Assert.assertEquals(expectedFelineName, actualFelineName);
+        assertEquals("Кошачьи", feline.getFamily());
     }
 
+    // Проверяем, что eatMeat() возвращает ожидаемый список еды
     @Test
     public void testFelineMeat() throws Exception{
-        Animal animal = new Animal();
-        List <String> actualFelineEatMeat = animal.getFood("Хищник");
-        List <String> expectedFelineEatMeat = feline.eatMeat();
-        Assert.assertEquals(expectedFelineEatMeat, actualFelineEatMeat);
+        List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
+        List <String> actualFood = feline.eatMeat();
+        assertEquals(expectedFood, actualFood);
     }
 
+    // Проверяем, что getKittens() без аргументов возвращает 1
     @Test
     public void testGetKittenWithoutArgumentsShouldReturn1() {
-        int actualWithoutArguments = feline.getKittens();
-        int expectedWithoutArguments = 1;
-        Assert.assertEquals(expectedWithoutArguments, actualWithoutArguments);
+        assertEquals(1, feline.getKittens());
     }
 
+    // Проверяем, что getKittens(int count) возвращает переданное значение
     @Test
     public void testGetKittensWithParameterReturnPassedValueAsKittens() {
-        int actualWithParameterReturn = feline.getKittens(8);
-        int expectedWithParameterReturn = 8;
-        Assert.assertEquals(expectedWithParameterReturn, actualWithParameterReturn);
+        assertEquals(8, feline.getKittens(8));
     }
 }
